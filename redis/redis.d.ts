@@ -11,12 +11,12 @@ declare module "redis" {
   export function createClient(port_arg: number, host_arg?: string, options?: ClientOpts): RedisClient;
   export function createClient(unix_socket: string, options?: ClientOpts): RedisClient;
   export function createClient(options?: ClientOpts): RedisClient;
-	export function print(err: Error, reply: any): void;
-	export var debug_mode: boolean;
+  export function print(err: Error, reply: any): void;
+  export var debug_mode: boolean;
 
-	interface MessageHandler {
-		(channel: string, message: any): void;
-	}
+  interface MessageHandler {
+    (channel: string, message: any): void;
+  }
 
   interface CommandT<R> { //This is a placeholder to be used eventually, to not have to define each command twice, or four times if all caps versions are to be implemented.
     (args: any[], callback?: ResCallbackT<R>): void;
@@ -27,25 +27,25 @@ declare module "redis" {
     (err: Error, res: R): void;
   }
 
-	interface ServerInfo {
-		redis_version: string;
-		versions: number[];
-	}
+  interface ServerInfo {
+    redis_version: string;
+    versions: number[];
+  }
 
-	interface ClientOpts {
-		parser?: string;
-		return_buffers?: boolean;
-		detect_buffers?: boolean;
-		socket_nodelay?: boolean;
-		no_ready_check?: boolean;
-		enable_offline_queue?: boolean;
-		retry_max_delay?: number;
-		connect_timeout?: number;
-		max_attempts?: number;
-		auth_pass?: string;
-	}
+  interface ClientOpts {
+    parser?: string;
+    return_buffers?: boolean;
+    detect_buffers?: boolean;
+    socket_nodelay?: boolean;
+    no_ready_check?: boolean;
+    enable_offline_queue?: boolean;
+    retry_max_delay?: number;
+    connect_timeout?: number;
+    max_attempts?: number;
+    auth_pass?: string;
+  }
 
-	interface RedisClient extends NodeJS.EventEmitter {
+  interface RedisClient extends NodeJS.EventEmitter {
     // event: connect
     // event: error
     // event: message
@@ -350,5 +350,5 @@ declare module "redis" {
     evalsha(...args: any[]): void;
     quit(args: any[], callback?: ResCallbackT<any>): void;
     quit(...args: any[]): void;
-	}
+  }
 }
